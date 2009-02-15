@@ -1,16 +1,22 @@
 <?php
 
+/* RNews - SMF news-posting interpretor
+ * Written for http://revolushii.ro 
+ * Copyright (c) 2009 Skee, http://token.ro
+ * Licensed under the BSD license - see LICENSE
+ */
+
 // config
 include("dbconfig.php");
 $board_id = 39;
-$template_header = "up.html";
-$template_footer = "down.html";
+$template_header = "tpl/up.html";
+$template_footer = "tpl/down.html";
 
 //$path_subsphp = "../smf/Sources/Subs.php";
 // SMF's Subs.php contains doUBBC() and parse_bbc() for parsing BBCode
 // -----
 $version = "0.2";
-// SQL query that only grabs the first post of any thread, but counts number of 
+// SQL query that only grabs the first post of any thread, but counts number of
 // posts in that thread and returns that too. Sorted by time desc (newest 
 // first), uninfluenced by replies.
 $n_query = "select *,count(id_msg)-1 AS num_comments from smf_messages where 
@@ -19,7 +25,7 @@ $n_query = "select *,count(id_msg)-1 AS num_comments from smf_messages where
 //include($path_subsphp);
 //
 // temporary use: simple_bb_code. Ideally, use SMF's bbc parser (as above)
-include("simple_bb_code.php");
+include("lib/simple_bb_code.php");
 $bbc = new Simple_BB_Code();
 
 // connect to database
