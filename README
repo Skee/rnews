@@ -1,4 +1,4 @@
-RNews 
+RNews
 =====
 
 RNews is a simple interface to a Simple Machines Forum (SMF) database that
@@ -12,12 +12,8 @@ It also generates links to the specific posts/threads extracted.
 It is designed to be used as a simple news-displaying front page, a la
 TinyPortal.
 
-TODO:
-- HTML beautification
-- caching mecanism
-
 Written for http://revolushii.ro by Skee ( http://token.ro/ ).
 
-Copyright (c) 2009, Skee, http://token.ro 
-All rights reserved.  
+Copyright (c) 2009, Skee, http://token.ro
+All rights reserved.
 Licensed under the BSD license. See the LICENSE file for terms.

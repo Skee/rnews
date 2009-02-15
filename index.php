@@ -7,12 +7,12 @@
  */
 
 // config
-include("dbconfig.php");
+include("config.php");
 $board_id = 39;
-$template_header = "tpl/up.html";
-$template_footer = "tpl/down.html";
+$template_header = "tpl/header.php";
+$template_footer = "tpl/footer.php";
 
-//$path_subsphp = "../smf/Sources/Subs.php";
+//$path_subsphp = "../forum/Sources/Subs.php";
 // SMF's Subs.php contains doUBBC() and parse_bbc() for parsing BBCode
 // -----
 $version = "0.2";
@@ -54,12 +54,12 @@ while($item = mysql_fetch_assoc($raw))
 
 echo "<hr>";
 
-// SQL to get 10 newst posts by brutalistu in New Releases, first line only and
+// SQL to get 20 newset posts by brutalistu in New Releases, first line only and
 // post id
 
 $nr_query = "select ID_MSG, CONCAT(LEFT(body, LOCATE('<br />',body)-1),'[/b]')
     AS title from smf_messages where ID_TOPIC = 360 and ID_MEMBER = 42 order by
-    -posterTime LIMIT 10";
+    -posterTime LIMIT 20";
 // title here is game title as posted by user, NOT post title as known by SMF
 // (post subject)
 
