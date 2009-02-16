@@ -8,25 +8,19 @@
 
 // config
 include("config.php");
-$board_id = 39;
-$template_header = "tpl/header.php";
-$template_footer = "tpl/footer.php";
-
-//$path_subsphp = "../forum/Sources/Subs.php";
-// SMF's Subs.php contains doUBBC() and parse_bbc() for parsing BBCode
-// -----
 $version = "0.2";
+
 // SQL query that only grabs the first post of any thread, but counts number of
 // posts in that thread and returns that too. Sorted by time desc (newest
 // first), uninfluenced by replies.
 $n_query = "select *,count(id_msg)-1 AS num_comments from smf_messages where
 	id_board = $board_id group by id_topic order by -posterTime";
 
-//include($path_subsphp);
-//
-// temporary use: simple_bb_code. Ideally, use SMF's bbc parser (as above)
-include("lib/simple_bb_code.php");
-$bbc = new Simple_BB_Code();
+// For Subs.php bbc parsing:
+define("SMF", "muffins");
+define("WIRELESS", "false");
+$modSettings['enableBBC'] = true;
+include($path_subsphp);
 
 // connect to database
 $link = mysql_connect($db_host, $db_user, $db_password);
@@ -46,9 +40,7 @@ while($item = mysql_fetch_assoc($raw))
 		$item['posterName'] . "</em> on " . date('r', $item['posterTime']) .
 		"</p>\n";
 	echo "<div>";
-		//echo doUBBC($item['body']) . "<br />\n";
-		echo $bbc->parse(str_replace("<br />", "\n", $item['body']));
-		//echo $item['body'] . "<br />\n";
+		echo parse_bbc($item['body']) . "<br />\n";
 	echo "</div>";
 	echo "<p><a href='http://revolushii.ro/forum/index.php/topic," .
 		$item['ID_TOPIC'] . ".0.html'>" . $item['num_comments'] .  "
@@ -64,8 +56,8 @@ echo "<h2>Latest game releases</h2>\n";
 echo "<p>\n";
 
 $nr_query = "select ID_MSG, CONCAT(LEFT(body, LOCATE('<br />',body)-1),'[/b]')
-	AS title from smf_messages where ID_TOPIC = 360 and ID_MEMBER = 42 order by
-	-posterTime LIMIT 20";
+	AS title from smf_messages where ID_TOPIC = $thread_id and ID_MEMBER = 
+	$poster_id order by -posterTime LIMIT 20";
 // title here is game title as posted by user, NOT post title as known by SMF
 // (post subject)
 
