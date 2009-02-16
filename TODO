@@ -5,3 +5,4 @@ TODO:
 - use SMF's BBC parser
 - put board_id, id_topic, id_msg in config.php with proper comments
 - post subject instead of first line
+- paging
