@@ -10,11 +10,25 @@
 include("config.php");
 $version = "0.2";
 
+// Let's do some LIMIT-based paging
+$items_per_page = 20; // TODO: move this to config
+$page = $_GET['p'] + 0;
+if (!is_numeric($page) || $page < 0) 
+{
+    header("Location: /");
+    die();
+}
+$items_start = ($page * $items_per_page) +1;
+
+//debug
+echo $page . " " . $items_start;
+
 // SQL query that only grabs the first post of any thread, but counts number of
 // posts in that thread and returns that too. Sorted by time desc (newest
 // first), uninfluenced by replies.
 $n_query = "select *,count(id_msg)-1 AS num_comments from smf_messages where
-	id_board = $board_id group by id_topic order by -posterTime";
+    id_board = $board_id group by id_topic order by -posterTime limit 
+    $items_start, $items_per_page";
 
 // For Subs.php bbc parsing:
 define("SMF", "muffins");
