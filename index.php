@@ -36,7 +36,7 @@ include($path_subsphp);
 $link = mysql_connect($db_host, $db_user, $db_password);
 mysql_set_charset('utf8', $link);
 $db = mysql_select_db($db_name, $link);
-$raw = mysql_query($n_query, $link);
+$raw = mysql_query($n_query, $link) or die(mysql_error());
 
 // insert header template
 include($template_header);
@@ -84,6 +84,7 @@ while($item = mysql_fetch_assoc($nr_raw))
 		"</a><br />\n";
 }
 echo "</p>\n";
+echo "<a href='?p=" . ($page+1) . "'>next page</a>\n";
 
 // insert footer template
 include($template_footer);
