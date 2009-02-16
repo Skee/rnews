@@ -17,7 +17,7 @@ if (!is_numeric($page) || $page < 0)
     header("Location: /");
     die();
 }
-$items_start = ($page * $items_per_page) +1;
+$items_start = ($page * $items_per_page);
 
 // SQL query that only grabs the first post of any thread, but counts number of
 // posts in that thread and returns that too. Sorted by time desc (newest
