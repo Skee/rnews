@@ -65,9 +65,9 @@ echo "<h2>Latest game releases</h2>\n";
 
 echo "<p>\n";
 
-$nr_query = "select ID_MSG, CONCAT(LEFT(body, LOCATE('<br />',body)-1),'[/b]')
-	AS title from smf_messages where ID_TOPIC = $thread_id and ID_MEMBER =
-	$poster_id and left(body, 3) = '[b]' order by -posterTime LIMIT 20";
+$nr_query = "select ID_MSG, subject as title from smf_messages where ID_TOPIC =
+    $thread_id and ID_MEMBER = $poster_id and left(subject, 3) != 'Re:' order
+    by -posterTime LIMIT 20";
 // title here is game title as posted by user, NOT post title as known by SMF
 // (post subject)
 
