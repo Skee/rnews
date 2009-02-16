@@ -1,3 +1,6 @@
 TODO:
-- HTML beautification
 - caching mecanism
+- better theme
+- convert posts wp -> smf
+- link from post author to forum profile page
+- link from post title to forum topic (same link as comments)
