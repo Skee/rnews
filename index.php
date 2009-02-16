@@ -8,11 +8,11 @@
 
 // config
 include("config.php");
-$version = "0.2";
+$version = "0.3";
 
 // Let's do some LIMIT-based paging
 $page = $_GET['p'] + 0;
-if (!is_numeric($page) || $page < 0) 
+if (!is_numeric($page) || $page < 0)
 {
     header("Location: /");
     die();
@@ -23,7 +23,7 @@ $items_start = ($page * $items_per_page);
 // posts in that thread and returns that too. Sorted by time desc (newest
 // first), uninfluenced by replies.
 $n_query = "select *,count(id_msg)-1 AS num_comments from smf_messages where
-    id_board = $board_id group by id_topic order by -posterTime limit 
+    id_board = $board_id group by id_topic order by -posterTime limit
     $items_start, $items_per_page";
 
 // For Subs.php bbc parsing:
@@ -66,7 +66,7 @@ echo "<h2>Latest game releases</h2>\n";
 echo "<p>\n";
 
 $nr_query = "select ID_MSG, CONCAT(LEFT(body, LOCATE('<br />',body)-1),'[/b]')
-	AS title from smf_messages where ID_TOPIC = $thread_id and ID_MEMBER = 
+	AS title from smf_messages where ID_TOPIC = $thread_id and ID_MEMBER =
 	$poster_id and left(body, 3) = '[b]' order by -posterTime LIMIT 20";
 // title here is game title as posted by user, NOT post title as known by SMF
 // (post subject)
@@ -84,7 +84,7 @@ while($item = mysql_fetch_assoc($nr_raw))
 		"</a><br />\n";
 }
 echo "</p>\n";
-echo "<a href='?p=" . ($page+1) . "'>next page</a>\n";
+echo "<p><a href='?p=" . ($page+1) . "'>next page</a></p>\n";
 
 // insert footer template
 include($template_footer);

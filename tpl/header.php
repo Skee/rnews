@@ -11,4 +11,4 @@
 
 <body>
 
-<h1>revolushii.ro | the newsblog libre</h1>
+<h1><a href=".">revolushii.ro | the newsblog libre</a></h1>
