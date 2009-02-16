@@ -14,8 +14,8 @@ $version = "0.3";
 $page = $_GET['p'] + 0;
 if (!is_numeric($page) || $page < 0)
 {
-    header("Location: /");
-    die();
+	header("Location: /");
+	die();
 }
 $items_start = ($page * $items_per_page);
 
@@ -23,8 +23,8 @@ $items_start = ($page * $items_per_page);
 // posts in that thread and returns that too. Sorted by time desc (newest
 // first), uninfluenced by replies.
 $n_query = "select *,count(id_msg)-1 AS num_comments from smf_messages where
-    id_board = $board_id group by id_topic order by -posterTime limit
-    $items_start, $items_per_page";
+	id_board = $board_id group by id_topic order by -posterTime limit
+	$items_start, $items_per_page";
 
 // For Subs.php bbc parsing:
 define("SMF", "muffins");
@@ -45,18 +45,28 @@ include($template_header);
 while($item = mysql_fetch_assoc($raw))
 {
 	// do html magic hyah
-	echo "<h2>" . $item['subject'] . "</h2>";
-	echo "<p>Posted by <em>" .
-		$item['posterName'] . "</em> on " . date('r', $item['posterTime']) .
+	echo '<div class="post">';
+	echo '<h2 class="storytitle">' . $item['subject'] . '</h2>';
+	echo '<p class="meta">Posted by <em>' .
+		$item['posterName'] . '</em> on ' . date('r', $item['posterTime']) .
 		"</p>\n";
-	echo "<div>";
-		echo parse_bbc($item['body']) . "<br />\n";
-	echo "</div>";
-	echo "<p><a href='http://revolushii.ro/forum/index.php/topic," .
-		$item['ID_TOPIC'] . ".0.html'>" . $item['num_comments'] .  "
-		comments</a></p>
-		<hr />";
+	echo '<div class="storycontent">';
+		echo parse_bbc($item['body']) . '<br />';
+	echo "</div>\n";
+	echo '<p class="feedback">
+		<a href="http://revolushii.ro/forum/index.php/topic,' .
+		$item['ID_TOPIC'] . '.0.html">' . $item['num_comments'] . ' comments</a>
+		</p>';
+	echo '</div>';
 }
+
+// paging
+echo "<p><a href='?p=" . ($page+1) . "'>Next Page &raquo;</a></p>\n";
+
+
+echo '<!-- begin sidebar -->';
+echo '<hr />
+<div id="menu">';
 
 // SQL to get 20 newset posts by brutalistu in New Releases, first line only
 // and post id
@@ -66,8 +76,8 @@ echo "<h2>Latest game releases</h2>\n";
 echo "<p>\n";
 
 $nr_query = "select ID_MSG, subject as title from smf_messages where ID_TOPIC =
-    $thread_id and ID_MEMBER = $poster_id and left(subject, 3) != 'Re:' order
-    by -posterTime LIMIT 20";
+	$thread_id and ID_MEMBER = $poster_id and left(subject, 3) != 'Re:' order
+	by -posterTime LIMIT 20";
 
 $nr_raw = mysql_query($nr_query, $link);
 
@@ -82,7 +92,8 @@ while($item = mysql_fetch_assoc($nr_raw))
 		"</a><br />\n";
 }
 echo "</p>\n";
-echo "<p><a href='?p=" . ($page+1) . "'>next page</a></p>\n";
+echo '</div>';
+echo '<!-- end sidebar -->';
 
 // insert footer template
 include($template_footer);

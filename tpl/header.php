@@ -9,6 +9,7 @@
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 </head>
 
-<body>
-
-<h1><a href=".">revolushii.ro | the newsblog libre</a></h1>
+<body id="rap">
+<h1 id="header"><a href=".">revolushii.ro | the newsblog libre</a></h1>
+<div id="content">
+<!-- end header -->
