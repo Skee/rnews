@@ -68,8 +68,6 @@ echo "<p>\n";
 $nr_query = "select ID_MSG, subject as title from smf_messages where ID_TOPIC =
     $thread_id and ID_MEMBER = $poster_id and left(subject, 3) != 'Re:' order
     by -posterTime LIMIT 20";
-// title here is game title as posted by user, NOT post title as known by SMF
-// (post subject)
 
 $nr_raw = mysql_query($nr_query, $link);
 

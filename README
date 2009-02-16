@@ -5,7 +5,7 @@ RNews is a simple interface to a Simple Machines Forum (SMF) database that
 grabs:
 - the first post of each thread in a given board
 - the number of replies to each thread
-- the first line of each post made to a certain thread by a certain user
+- the subject of each post made to a certain thread by a certain user
 
 It also generates links to the specific posts/threads extracted.
 
