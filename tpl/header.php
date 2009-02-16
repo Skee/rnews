@@ -5,11 +5,13 @@
 	<title>revolushii.ro | the newsblog libre</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="RNews <?php echo $version; ?>" />
-	<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" type="image/png" href="../favicon.png" />
+	<link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+	<?php include ('../xmas/index.php'); ?>
 </head>
 
 <body id="rap">
 <h1 id="header"><a href=".">revolushii.ro | the newsblog libre</a></h1>
+<div id="tag"></div>
 <div id="content">
 <!-- end header -->
