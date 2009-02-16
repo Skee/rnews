@@ -11,7 +11,6 @@ include("config.php");
 $version = "0.2";
 
 // Let's do some LIMIT-based paging
-$items_per_page = 20; // TODO: move this to config
 $page = $_GET['p'] + 0;
 if (!is_numeric($page) || $page < 0) 
 {
@@ -19,9 +18,6 @@ if (!is_numeric($page) || $page < 0)
     die();
 }
 $items_start = ($page * $items_per_page) +1;
-
-//debug
-echo $page . " " . $items_start;
 
 // SQL query that only grabs the first post of any thread, but counts number of
 // posts in that thread and returns that too. Sorted by time desc (newest

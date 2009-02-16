@@ -13,4 +13,5 @@ $thread_id = 360; // thread with new release posts
 $template_header = "tpl/header.php";
 $template_footer = "tpl/footer.php";
 $path_subsphp = "../forum/Sources/Subs.php"; // path to SMF's Subs.php
+$items_per_page = 20; // items per page, when paging
 ?>
