@@ -50,9 +50,10 @@ while($item = mysql_fetch_assoc($raw))
 		<a rel="bookmark" href="' . $forum_url . '/index.php/topic,' .
 		$item['ID_TOPIC'] . '.0.html">' . $item['subject'] . '</a>
 		</h2>';
-	echo '<p class="meta">Posted by <em>' .
-		$item['posterName'] . '</em> on ' . date('r', $item['posterTime']) .
-		"</p>\n";
+    echo '<p class="meta">Posted by <em> <a href="' . $forum_url .
+        '/index.php?action=profile;u=' . $item['ID_MEMBER'] . '">' .
+        $item['posterName'] . '</a></em> on ' . date('r', $item['posterTime']) .
+        "</p>\n";
 	echo '<div class="storycontent">';
 		echo parse_bbc($item['body']) . '<br />';
 	echo "</div>\n";
