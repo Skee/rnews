@@ -46,7 +46,9 @@ while($item = mysql_fetch_assoc($raw))
 {
 	// do html magic hyah
 	echo '<div class="post">';
-	echo '<h2 class="storytitle">' . $item['subject'] . '</h2>';
+	echo '<h2 class="storytitle">
+	<a href="http://revolushii.ro/forum/index.php/topic,' . $item['ID_TOPIC']
+	. '.0.html">' . $item['subject'] . '</a></h2>';
 	echo '<p class="meta">Posted by <em>' .
 		$item['posterName'] . '</em> on ' . date('r', $item['posterTime']) .
 		"</p>\n";
