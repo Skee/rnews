@@ -30,7 +30,7 @@ $n_query = "select *,count(id_msg)-1 AS num_comments from smf_messages where
 define("SMF", "muffins");
 define("WIRELESS", "false");
 $modSettings['enableBBC'] = true;
-include($path_subsphp);
+include($forum_path . '/Sources/Subs.php');
 
 // connect to database
 $link = mysql_connect($db_host, $db_user, $db_password);
@@ -47,8 +47,9 @@ while($item = mysql_fetch_assoc($raw))
 	// do html magic hyah
 	echo '<div class="post">';
 	echo '<h2 class="storytitle">
-	<a href="http://revolushii.ro/forum/index.php/topic,' . $item['ID_TOPIC']
-	. '.0.html">' . $item['subject'] . '</a></h2>';
+		<a rel="bookmark" href="' . $forum_url . '/index.php/topic,' .
+		$item['ID_TOPIC'] . '.0.html">' . $item['subject'] . '</a>
+		</h2>';
 	echo '<p class="meta">Posted by <em>' .
 		$item['posterName'] . '</em> on ' . date('r', $item['posterTime']) .
 		"</p>\n";
@@ -56,7 +57,7 @@ while($item = mysql_fetch_assoc($raw))
 		echo parse_bbc($item['body']) . '<br />';
 	echo "</div>\n";
 	echo '<p class="feedback">
-		<a href="http://revolushii.ro/forum/index.php/topic,' .
+		<a href="' . $forum_url . '/index.php/topic,' .
 		$item['ID_TOPIC'] . '.0.html">' . $item['num_comments'] . ' comments</a>
 		</p>';
 	echo '</div>';
@@ -89,8 +90,8 @@ while($item = mysql_fetch_assoc($nr_raw))
 	// strip BBCode from title
 	$title = preg_replace("/(\\[.*?\\])/", "", $item['title']);
 
-	echo "<a href='http://revolushii.ro/forum/index.php/topic,360.msg" .
-		$item['ID_MSG'] .  ".html#msg" . $item['ID_MSG'] . "'>" . $title .
+	echo '<a href="' . $forum_url . '/index.php/topic,360.msg' .
+		$item['ID_MSG'] .  '.html#msg' . $item['ID_MSG'] . '">' . $title .
 		"</a><br />\n";
 }
 echo "</p>\n";
