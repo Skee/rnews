@@ -13,7 +13,8 @@
 	<?php include ('../xmas/index.php'); ?>
 </head>
 
-<body id="rap">
+<body>
+<div id="rap">
 <h1 id="header"><a href=".">revolushii.ro | the newsblog libre</a></h1>
 <div id="tag"></div>
 <div id="content">
