@@ -12,6 +12,8 @@ It also generates links to the specific posts/threads extracted.
 It is designed to be used as a simple news-displaying front page, a la
 TinyPortal.
 
+Also included is a basic importer to convert wordpress posts to smf topics.
+
 Written for http://revolushii.ro by Skee ( http://token.ro/ ).
 
 Copyright (c) 2009, Skee, http://token.ro

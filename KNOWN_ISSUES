@@ -9,3 +9,7 @@ blagporter:
 
 - blag comments are imported as guest-made forum posts and not linked to
   existing forum profiles (if existing) => live with it.
+
+- newlines in the original post's HTML are converted to br tags by SMF when
+  displaying => remove any extraneous newlines from the posts to make them
+  display cleanly.
