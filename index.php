@@ -30,6 +30,7 @@ $n_query = "select *,count(id_msg)-1 AS num_comments from smf_messages where
 define("SMF", "muffins");
 define("WIRELESS", "false");
 $modSettings['enableBBC'] = true;
+$modSettings['autoLinkUrls'] = true;
 include($forum_path . '/Sources/Subs.php');
 
 // connect to database
