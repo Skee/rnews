@@ -37,6 +37,7 @@ $link = mysql_connect($db_host, $db_user, $db_password);
 mysql_set_charset('utf8', $link);
 $db = mysql_select_db($db_name, $link);
 $raw = mysql_query($n_query, $link) or die(mysql_error());
+$num_returned = mysql_num_rows($raw);
 
 // insert header template
 include($template_header);
@@ -65,7 +66,11 @@ while($item = mysql_fetch_assoc($raw))
 }
 
 // paging
-echo "<p><a href='?p=" . ($page+1) . "'>Next Page &raquo;</a></p>\n";
+// addition: if num_returned_results < items_per page => last page
+if ($num_returned == $items_per_page)
+{
+    echo "<p><a href='?p=" . ($page+1) . "'>Next Page &raquo;</a></p>\n";
+}
 
 
 echo '<!-- begin sidebar -->';
