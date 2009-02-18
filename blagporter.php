@@ -1,4 +1,12 @@
 <?php
+
+/* blagporter - a part of RNews
+ * RNews - SMF news-posting interpretor
+ * Written for http://revolushii.ro
+ * Copyright (c) 2009 Skee, http://token.ro
+ * Licensed under the BSD license - see LICENSE
+ */
+
 error_reporting(E_ALL);
 include("config.php");
 
