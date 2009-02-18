@@ -100,7 +100,7 @@ foreach($topic as $id => $onetopic)
     $query = "SELECT comment_author, UNIX_TIMESTAMP(comment_date) AS 
         comment_date, comment_author_email, comment_content FROM
         wp_comments WHERE comment_post_id = $this_posts_dbid AND 
-        comment_approved = 1";
+        comment_approved = 1 ORDER BY comment_date";
     $raw = mysql_query($query);
     while($com = mysql_fetch_assoc($raw))
     {
