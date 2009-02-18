@@ -34,7 +34,7 @@ echo "starting import at ID_TOPIC = $topicid_start \n";
 
 foreach($blagpoasts as $id => $poast) {
     $topic[$id]['ID_TOPIC'] = $topicid_start++;
-    $topic[$id]['ID_BOARD'] = 39;
+    $topic[$id]['ID_BOARD'] = $board_id;
     $topic[$id]['posterTime'] = $poast['post_timestamp'];
     switch ($poast['post_author'])
     {
@@ -105,7 +105,7 @@ foreach($topic as $id => $onetopic)
     while($com = mysql_fetch_assoc($raw))
     {
         $pcomment['ID_TOPIC'] = $onetopic['ID_TOPIC'];
-        $pcomment['ID_BOARD'] = 39;
+        $pcomment['ID_BOARD'] = $board_id;
         $pcomment['posterTime'] = $com['comment_date'];
         $pcomment['ID_MEMBER'] = 0;
         $pcomment['posterName'] = 
