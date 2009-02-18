@@ -1,0 +1,11 @@
+blagporter:
+
+- SMF breaks on HTML using single instead of double quotes in tags/attributes
+  => make sure all your img and a tags use "url" instead of 'url'
+
+- blagporter does not create entries for topics in smf_topics => after
+  blagporting, go to Forum Maintenance and hit Fix Errors (choose Yes after the
+  errors are listed) and Recount Totals and Statistics
+
+- blag comments are imported as guest-made forum posts and not linked to
+  existing forum profiles (if existing) => live with it.
