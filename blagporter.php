@@ -29,11 +29,12 @@ for($i=0; $i<mysql_num_rows($raw); $i++)
 // give me existing maximum id_topic
 $arr = mysql_fetch_row(mysql_query("SELECT MAX(ID_TOPIC) FROM smf_messages"));
 $topicid_start = $arr[0]+1;
+$cur_topicid = $topicid_start;
 echo "<pre>";
 echo "starting import at ID_TOPIC = $topicid_start \n";
 
 foreach($blagpoasts as $id => $poast) {
-    $topic[$id]['ID_TOPIC'] = $topicid_start++;
+    $topic[$id]['ID_TOPIC'] = $cur_topicid++;
     $topic[$id]['ID_BOARD'] = $board_id;
     $topic[$id]['posterTime'] = $poast['post_timestamp'];
     switch ($poast['post_author'])
@@ -125,7 +126,8 @@ foreach($topic as $id => $onetopic)
 function post_message($arr)
 {
     global $link;
-    echo "Importing ". $arr['subject'] . " by " . $arr['posterName'] . "\n";
+    echo "Importing ". $arr['subject'] . " by " . $arr['posterName'] . " into
+        topic " . $arr['ID_TOPIC'] ."\n";
     $query = "INSERT INTO smf_messages (`ID_TOPIC`, `ID_BOARD`, `posterTime`, 
         `ID_MEMBER`, `posterName`, `posterEmail`, `posterIP`, `subject`, 
         `body`)
@@ -141,7 +143,35 @@ function post_message($arr)
     //print htmlspecialchars($query . "\n");
 }
 
+function fix_topics() 
+{
+    global $topicid_start, $cur_topicid, $link, $board_id;
 
+    // coloane in smf_topics: ID_TOPIC, isSticky, ID_BOARD, ID_FIRST_MSG, 
+    // ID_LAST_MSG, ID_MEMBER_STARTED, ID_MEMBER_UPDATED, ID_POLL, numReplies, 
+    // numViews, locked
+    for($i=$topicid_start;$i<$cur_topicid;$i++)
+    {
+        // get first and last posts and number of replies
+        $r = mysql_fetch_array(mysql_query("SELECT MIN(ID_MSG), MAX(ID_MSG), COUNT(ID_MSG) FROM smf_messages WHERE ID_TOPIC = $i"));
+        $first_msg = $r[0];
+        $last_msg = $r[1];
+        $numReplies = $r[2]-1;
+
+        // get first poster's id
+        $r = mysql_fetch_array(mysql_query("SELECT ID_MEMBER FROM smf_messages WHERE ID_TOPIC = $i GROUP BY ID_TOPIC"));
+        $id_member_started = $r[0];
+
+        // update in sql
+        echo "Fixing $i: $board_id, $first_msg, $last_msg, $id_member_started, $numReplies\n";
+        mysql_query("INSERT INTO smf_topics (`ID_TOPIC`, `ID_BOARD`, `ID_FIRST_MSG`, `ID_LAST_MSG`, `ID_MEMBER_STARTED`, `numReplies`,
+            `numViews`, `locked`) VALUES ( $i, $board_id, $first_msg, $last_msg, $id_member_started, $numReplies, 100, 0)");
+    }
+
+
+}
+
+fix_topics();
 echo "ALL DONE";
 
 
