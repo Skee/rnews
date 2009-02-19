@@ -2,8 +2,9 @@ blagporter:
 
 - SMF breaks on HTML using single instead of double quotes in tags/attributes
   => make sure all your img and a tags use "url" instead of 'url'
+  => there are some sql queries commented at the end of blagporter, read them
 
-- blagporter does not create entries for topics in smf_topics => after
+- blagporter does not create all of SMF's entries for new topics/posts => after
   blagporting, go to Forum Maintenance and hit Fix Errors (choose Yes after the
   errors are listed) and Recount Totals and Statistics
 

@@ -8,7 +8,7 @@
 
 // config
 include("config.php");
-$version = "0.4";
+$version = "0.5";
 
 // Let's do some LIMIT-based paging
 $page = $_GET['p'] + 0;

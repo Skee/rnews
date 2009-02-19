@@ -172,6 +172,26 @@ function fix_topics()
 }
 
 fix_topics();
+
+// SMF breaks if using single quotes in HTML posts near url
+// try to replace these with double quotes
+// manually run these queries since i'm too lazy to properly escape them
+// replace 665 with your $topicid_start
+//
+// update smf_messages set body = replace(body, "='", '="') where id_topic >= 665
+//
+// update smf_messages set body = replace(body, "' class", '" class') where id_topic >= 665
+//
+// update smf_messages set body = replace(body, "'/>", '"/>') where id_topic >= 665
+//
+// update smf_messages set body = replace(body, "'>", '">') where id_topic >= 665
+//
+// update smf_messages set body = replace(body, "' />", '" />') where id_topic >= 665
+//
+// update smf_messages set body = replace(body, "' alt", '" alt') where id_topic >= 665
+//
+// update smf_messages set body = replace(body, "' title", '" title') where id_topic >= 665
+
 echo "ALL DONE";
 
 
