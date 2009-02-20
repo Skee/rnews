@@ -8,7 +8,7 @@
  */
 
 error_reporting(E_ALL);
-include("config.php");
+include("../config.php");
 
 $link = mysql_connect($db_host, $db_user, $db_password);
 mysql_set_charset('utf8', $link);
@@ -98,9 +98,9 @@ foreach($topic as $id => $onetopic)
     post_message($onetopic);
     // get posts's comments
     $this_posts_dbid = $blagpoasts[$id]['ID'];
-    $query = "SELECT comment_author, UNIX_TIMESTAMP(comment_date) AS 
+    $query = "SELECT comment_author, UNIX_TIMESTAMP(comment_date) AS
         comment_date, comment_author_email, comment_content FROM
-        wp_comments WHERE comment_post_id = $this_posts_dbid AND 
+        wp_comments WHERE comment_post_id = $this_posts_dbid AND
         comment_approved = 1 ORDER BY comment_date";
     $raw = mysql_query($query);
     while($com = mysql_fetch_assoc($raw))
@@ -109,12 +109,12 @@ foreach($topic as $id => $onetopic)
         $pcomment['ID_BOARD'] = $board_id;
         $pcomment['posterTime'] = $com['comment_date'];
         $pcomment['ID_MEMBER'] = 0;
-        $pcomment['posterName'] = 
+        $pcomment['posterName'] =
             mysql_real_escape_string($com['comment_author']);
-        $pcomment['posterEmail'] = 
+        $pcomment['posterEmail'] =
             mysql_real_escape_string($com['comment_author_email']);
         $pcomment['posterIP'] = "127.0.0.1";
-        $pcomment['subject'] = "Re: " . 
+        $pcomment['subject'] = "Re: " .
             mysql_real_escape_string($onetopic['subject']);
         $pcomment['body'] = mysql_real_escape_string($com['comment_content']);
 
@@ -128,13 +128,13 @@ function post_message($arr)
     global $link;
     echo "Importing ". $arr['subject'] . " by " . $arr['posterName'] . " into
         topic " . $arr['ID_TOPIC'] ."\n";
-    $query = "INSERT INTO smf_messages (`ID_TOPIC`, `ID_BOARD`, `posterTime`, 
-        `ID_MEMBER`, `posterName`, `posterEmail`, `posterIP`, `subject`, 
+    $query = "INSERT INTO smf_messages (`ID_TOPIC`, `ID_BOARD`, `posterTime`,
+        `ID_MEMBER`, `posterName`, `posterEmail`, `posterIP`, `subject`,
         `body`)
         VALUES (";
     foreach($arr as $key => $content)
     {
-        ($key=='body') ? $query .= '"' . $content . '"' : $query .= '"' . 
+        ($key=='body') ? $query .= '"' . $content . '"' : $query .= '"' .
             $content . '", ';
     }
     $query .= ");";
@@ -143,12 +143,12 @@ function post_message($arr)
     //print htmlspecialchars($query . "\n");
 }
 
-function fix_topics() 
+function fix_topics()
 {
     global $topicid_start, $cur_topicid, $link, $board_id;
 
-    // coloane in smf_topics: ID_TOPIC, isSticky, ID_BOARD, ID_FIRST_MSG, 
-    // ID_LAST_MSG, ID_MEMBER_STARTED, ID_MEMBER_UPDATED, ID_POLL, numReplies, 
+    // coloane in smf_topics: ID_TOPIC, isSticky, ID_BOARD, ID_FIRST_MSG,
+    // ID_LAST_MSG, ID_MEMBER_STARTED, ID_MEMBER_UPDATED, ID_POLL, numReplies,
     // numViews, locked
     for($i=$topicid_start;$i<$cur_topicid;$i++)
     {

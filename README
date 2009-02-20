@@ -12,7 +12,8 @@ It also generates links to the specific posts/threads extracted.
 It is designed to be used as a simple news-displaying front page, a la
 TinyPortal.
 
-Also included is a basic importer to convert wordpress posts to smf topics.
+Also included is a basic converter for wordpress posts to smf topics,
+and a htaccess generator for redirects from wordpress posts to smf topics.
 
 Written for http://revolushii.ro by Skee ( http://token.ro/ ).
 

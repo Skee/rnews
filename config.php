@@ -14,5 +14,5 @@ $template_header = "tpl/header.php";
 $template_footer = "tpl/footer.php";
 $forum_url = "http://revolushii.ro/forum";
 $forum_path = ""; // location on server
-$items_per_page = 20; // items per page, when paging
+$items_per_page = 10; // items per page, when paging
 ?>
