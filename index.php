@@ -68,9 +68,9 @@ while($item = mysql_fetch_assoc($raw))
         $item['posterTime']) . "</p>\n";
     echo '<div class="storycontent">';
     // if any attachment was found, display it left-aligned
-    if($attach_id) echo '<img src="forum/index.php?action=dlattach;topic=' .
-        $item['ID_TOPIC'] . '.0;attach=' . $attach_id . ';image" 
-        class="alignnone Lb" />';
+    if($attach_id) echo '<img src="' . $forum_url .
+        '/index.php?action=dlattach;topic=' . $item['ID_TOPIC'] . '.0;attach='
+        . $attach_id . ';image" class="alignnone Lb" />';
     echo parse_bbc($item['body']) . '<br />';
     echo "</div>\n";
     echo '<p class="feedback">
