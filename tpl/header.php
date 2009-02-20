@@ -15,7 +15,7 @@
 
 <body>
 <div id="rap">
-<h1 id="header"><a href=".">revolushii.ro | the newsblog libre</a></h1>
+<h1 id="header"><a href="/">revolushii.ro | the newsblog libre</a></h1>
 <div id="tag"></div>
 <div id="content">
 <!-- end header -->
