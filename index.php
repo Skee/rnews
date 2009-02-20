@@ -70,7 +70,7 @@ while($item = mysql_fetch_assoc($raw))
 // addition: if num_returned_results < items_per page => last page
 if ($num_returned == $items_per_page)
 {
-    echo "<p><a href='?p=" . ($page+1) . "'>Next Page &raquo;</a></p>\n";
+    echo "<p><a href='/page/" . ($page+1) . "/'>Next Page &raquo;</a></p>\n";
 }
 
 

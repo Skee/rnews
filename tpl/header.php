@@ -5,12 +5,12 @@
 	<title>revolushii.ro | the newsblog libre</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="RNews <?php echo $version; ?>" />
-	<link rel="shortcut icon" type="image/png" href="../favicon.png" />
+	<link rel="shortcut icon" type="image/png" href="/favicon.png" />
 	<link rel="alternate" type="application/rss+xml" title="revolushii.ro feed"
 	href="<?php echo $forum_url; ?>/index.php?type=rss;action=.xml;sa=news;
 	board=<?php echo $board_id; ?>.0" />
-	<link rel="stylesheet" type="text/css" media="screen" href="style.css" />
-	<?php include ('../xmas/index.php'); ?>
+	<link rel="stylesheet" type="text/css" media="screen" href="/style.css" />
+	<?php include ('xmas/index.php'); ?>
 </head>
 
 <body>

@@ -205,14 +205,14 @@ hr {
 }
 
 #header {
-	background: #a40000 url("../forum/Themes/revo/images/headbg_bg.png") repeat-x;
+	background: #a40000 url("forum/Themes/revo/images/headbg_bg.png") repeat-x;
 	border: solid #fff 1px;
 	border-bottom: solid #ccc 3px;
 	margin: 0;
 }
 
 #header a {
-	background: transparent url("../forum/Themes/revo/images/headbg.png") no-repeat;
+	background: transparent url("forum/Themes/revo/images/headbg.png") no-repeat;
 	height: 119px;
 	display: block;
 	overflow: hidden;
@@ -220,7 +220,7 @@ hr {
 }
 
 .credit {
-	background: #a40000 url("../forum/Themes/revo/images/headbg_bg.png") repeat-x center;
+	background: #a40000 url("forum/Themes/revo/images/headbg_bg.png") repeat-x center;
 	color: #fff;
 	font-size: 11px;
 	margin: 10px 0 0 0;
