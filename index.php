@@ -70,7 +70,7 @@ while($item = mysql_fetch_assoc($raw))
     // if any attachment was found, display it left-aligned
     if($attach_id) echo '<img src="' . $forum_url .
         '/index.php?action=dlattach;topic=' . $item['ID_TOPIC'] . '.0;attach='
-        . $attach_id . ';image" alt="thumbnail" class="alignnone L" />';
+        . $attach_id . ';image" alt="thumbnail" class="L" /> ';
     echo parse_bbc($item['body']) . '<br />';
     echo "</div>\n";
     echo '<p class="feedback">
@@ -91,6 +91,26 @@ if ($num_returned == $items_per_page)
 echo '<!-- begin sidebar -->';
 echo '<hr />
 <div id="menu">';
+
+echo '
+<p id="btnz">
+	<a id="forum" href="' . $forum_url . '/" title="Discussion Forum">forum</a>
+	<a id="feed" href="' . $site_url . '/feed/" rel="alternate"
+	type="application/atom+xml" title="Syndicate this site">Feed</a>
+</p>
+';
+
+echo '
+<form action="' . $forum_url . '/index.php?action=search2" method="post"
+	accept-charset="UTF-8">
+<p>
+	<input name="search" type="text" />
+	<input name="submit" value="Search" type="submit" />
+	<input name="brd[' . $board_id . ']" value="' . $board_id . '"
+	type="hidden" />
+</p>
+</form>
+';
 
 // SQL to get 20 newset posts by brutalistu in New Releases, first line only
 // and post id
