@@ -3,7 +3,7 @@
 // map old wp links to new SMF threads!
 error_reporting(E_ALL);
 include('../config.php');
-include('/wp/wp-includes/formatting.php');
+include('../wp/wp-includes/formatting.php');
 
 $link = mysql_connect($db_host, $db_user, $db_password);
 mysql_set_charset('utf8', $link);
@@ -23,4 +23,3 @@ while ($item = mysql_fetch_assoc($raw))
 }
 
 ?>
-
