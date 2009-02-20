@@ -12,7 +12,7 @@ $version = "0.5";
 
 // Let's do some LIMIT-based paging
 $page = $_GET['p'] + 0;
-if (!is_numeric($page) || $page < 0)
+if (!is_numeric($page) || $page < 0 || $page > 999)
 {
 	header("Location: /");
 	die();
