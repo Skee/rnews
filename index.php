@@ -55,6 +55,7 @@ define("SMF", "muffins");
 define("WIRELESS", "false");
 $modSettings['enableBBC'] = true;
 $modSettings['autoLinkUrls'] = true;
+$modSettings['attachmentEncryptFilenames'] = true;
 include($forum_path . '/Sources/Subs.php');
 
 // connect to database
@@ -71,14 +72,16 @@ include($template_header);
 while($item = mysql_fetch_assoc($raw))
 {
     // get first attachment (second attachment is thumbnail)
-    $attach_query = "select id_attach from smf_attachments where id_msg = " .
-        $item['ID_MSG'] . " limit 1";
+    $attach_query = "select id_attach, filename from smf_attachments where
+        id_msg = " . $item['ID_MSG'] . " limit 1";
     $att_res = mysql_query($attach_query) or die(mysql_error());
     $attach_id = 0;
     if(mysql_num_rows($att_res) > 0)
     {
         $attach_arr = mysql_fetch_row($att_res);
         $attach_id = $attach_arr[0];
+        $attach_fn = $attach_arr[1];
+        $attach_realfn = getAttachmentFilename($attach_fn, $attach_id, true);
     }
     // do html magic hyah
     echo '<div class="post">';
@@ -92,9 +95,11 @@ while($item = mysql_fetch_assoc($raw))
         $item['posterTime']) . "</p>\n";
     echo '<div class="storycontent">';
     // if any attachment was found, display it left-aligned
-    if($attach_id) echo '<img src="' . $forum_url .
-        '/index.php?action=dlattach;topic=' . $item['ID_TOPIC'] . '.0;attach='
-        . $attach_id . ';image" alt="thumbnail" class="L" /> ';
+//    if($attach_id) echo '<img src="' . $forum_url .
+//        '/index.php?action=dlattach;topic=' . $item['ID_TOPIC'] . '.0;attach='
+//        . $attach_id . ';image" alt="' . $attach_realfn  . '" class="L" /> ';
+    if($attach_id) echo '<img src="' . $forum_url . '/attachments/' .
+        $attach_realfn . '" alt="' . $attach_fn  . '" class="L" /> ';
     echo parse_bbc($item['body']) . '<br />';
 	echo '<div class="clear"></div>';
     echo "</div>\n";
