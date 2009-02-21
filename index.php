@@ -72,6 +72,7 @@ while($item = mysql_fetch_assoc($raw))
         '/index.php?action=dlattach;topic=' . $item['ID_TOPIC'] . '.0;attach='
         . $attach_id . ';image" alt="thumbnail" class="L" /> ';
     echo parse_bbc($item['body']) . '<br />';
+	echo '<div class="clear"></div>';
     echo "</div>\n";
     echo '<p class="feedback">
         <a href="' . $forum_url . '/index.php/topic,' .
@@ -84,25 +85,30 @@ while($item = mysql_fetch_assoc($raw))
 // addition: if num_returned_results < items_per page => last page
 if ($num_returned == $items_per_page)
 {
-    echo "<p><a href='/page/" . ($page+1) . "/'>Next Page &raquo;</a></p>\n";
+	echo '<p id="paging">
+		<a href="/page/' . ($page+1) . '/">Next Page &raquo;</a>
+	</p>';
 }
 
 
 echo '<!-- begin sidebar -->';
-echo '<hr />
+echo '<hr class="hidden" />
 <div id="menu">';
 
 echo '
-<p id="btnz">
-	<a id="forum" href="' . $forum_url . '/" title="Discussion Forum">forum</a>
+<p id="buttons">
+	<a id="forum" href="' . $forum_url . '/" title="Forum">Forum</a>
 	<a id="feed" href="' . $site_url . '/feed/" rel="alternate"
-	type="application/atom+xml" title="Syndicate this site">Feed</a>
+	type="application/rss+xml" title="Feed">Feed</a>
+	<a id="downloads" href="' . $site_url . '/downloads/" title="Downloads">
+	Downloads</a>
+	<br />
 </p>
 ';
 
 echo '
-<form action="' . $forum_url . '/index.php?action=search2" method="post"
-	accept-charset="UTF-8">
+<form id="search" action="' . $forum_url . '/index.php?action=search2"
+	method="post" accept-charset="UTF-8">
 <p>
 	<input name="search" type="text" />
 	<input name="submit" value="Search" type="submit" />
@@ -115,9 +121,9 @@ echo '
 // SQL to get 20 newset posts by brutalistu in New Releases, first line only
 // and post id
 
+echo '<div id="new_releases">';
 echo "<h2>Latest game releases</h2>\n";
-
-echo "<p>\n";
+echo '<p>';
 
 $nr_query = "select ID_MSG, subject as title from smf_messages where ID_TOPIC =
     $thread_id and ID_MEMBER = $poster_id and left(subject, 3) != 'Re:' order
@@ -135,7 +141,16 @@ while($item = mysql_fetch_assoc($nr_raw))
         $item['ID_MSG'] .  '.html#msg' . $item['ID_MSG'] . '">' . $title .
         "</a><br />\n";
 }
-echo "</p>\n";
+echo '</p>';
+echo '</div>';
+
+echo '
+<div id="ads">
+	<a href="' . $forum_url . '/index.php?action=register">Register!</a><br />
+	klovruut wants <strong>you</strong>
+</div>
+';
+
 echo '</div>';
 echo '<!-- end sidebar -->';
 
@@ -143,4 +158,3 @@ echo '<!-- end sidebar -->';
 include($template_footer);
 
 ?>
-

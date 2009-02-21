@@ -2,206 +2,70 @@
 
 /* RNews */
 
-#rap {
-	margin: 12px 30px;
-	border: solid 1px #000;
-	background: #fff;
+body {
+	background: #EEEEEC;
+	color: #000;
+	font: normal 0.75em Verdana, sans-serif;
+	margin: 0;
+	padding: 0;
 }
 
 a {
-	color: #000;
+	color: #a40000;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 a img {
 	border: none;
 }
 
-a:visited {
-	color: #342;
-}
-
-a:hover {
-	color: #CC0000;
-}
-
-.more-link {
-	font: italic normal 1.2em Verdana, sans-serif;
-	padding: .1em;
-}
-
-acronym, abbr {
-	border-bottom: 1px dotted #333;
-}
-
-acronym, abbr, span.caps {
-	font-size: 90%;
-	letter-spacing: .07em;
-}
-
-acronym, abbr {
-	cursor: help;
-}
-
-blockquote {
-	clear: both;
-	background: #FFF4CE;
-	border: 1px solid #888A85;
-}
-
-blockquote p {
-	font-style: italic;
-	margin: 1em;
-}
-
-body {
-	background: #EEEEEC;
-	color: #000;
-	font-family: Verdana, sans-serif;
-	margin: 0;
-	padding: 0;
-}
-
 cite {
 	font-style: italic;
 }
 
-h2 {
-	border-bottom: 2px dotted #FFCE5D;
-	font: normal 1.07em Verdana, sans-serif;
-	padding: 0 0 2px 0;
-}
-
-h3 {
-	border-bottom: solid 1px #ccc;
-	font: bold .8em Verdana, sans-serif;
-}
-
-h4 {
-	font: bold .8em Verdana, sans-serif;
-}
-
-p, li, .feedback {
-	font: .8em/1.5em Verdana, sans-serif;
-}
-
-/* classes used by the_meta() */
-ul.post-meta {
-	list-style: none;
-}
-
-ul.post-meta span.post-meta-key {
-	font-weight: bold;
-}
-
-hr {
-	display: none;
-}
-
-.feedback {
-	text-align: right;
-	clear: both;
-}
-
-.meta {
-	font: .7em Arial, sans-serif;
-}
-
-.meta li, ul.post-meta li {
-	display: inline;
-}
-
-.meta ul {
-	display: inline;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-
-.meta, .meta a {
-	color: #808080;
-	font-weight: normal;
-	background: #eeeeec;
-}
-
-.tags {
-	font: .7em Arial, sans-serif;
-	margin: 0;
-	clear: both;
-}
-
-.tags a, #tag_cloud a {
-	background: #ffffbf;
-	border: solid 1px #FFDF95;
-	padding: .1em .2em;
-	text-decoration: none;
-	position: relative;
-}
-
-#tag_cloud a:hover {
-	z-index: 1;
-}
-
-#tag_cloud {
-	width: 90%;
-	text-align: center;
-}
-
-.storytitle {
-	margin: 0;
-	background: #fff;
-}
-
-.storytitle a, #feed, #forum {
-	text-decoration: none;
-}
-
-.post {
-	margin: 1em 0;
-}
-
-.avatar {
-	float: left;
-	margin: 1em;
-}
-
-.comment {
+blockquote {
+	background: transparent url("img/quote.png") top right no-repeat;
+	font-style: italic;
 	padding: .5em;
 }
 
-.comment-even {
-	background: #ebebeb;
-	border: solid 1px #ddd;
+table {
+	font: normal 1em Verdana;
+	border-collapse: collapse;
+	text-align: left;
+}
+th, td {
+	width: 8em;
+	height: 2em;
+}
+th {
+	border-bottom: solid 1px #000;
 }
 
-.comment-author {
-	clear: both;
-	display: block;
-	font-size: .7em;
-}
-
-#commentform #author, #commentform #email, #commentform #url, #commentform textarea {
-	background: #fff;
-	border: 1px solid #333;
-	padding: .2em;
-}
-
-#commentform textarea {
-	width: 100%;
-}
-
-#commentlist {
-	border-left: 1px dotted #ccc;
+code {
 	font-size: 1.2em;
-	list-style-type: none;
+}
+
+pre {
+	font-size: .9em;
+	border: solid 1px #ccc;
+	padding: 1em;
+	overflow: auto;
+}
+
+#rap {
+	margin: 12px 30px;
+	border: solid 1px #000;
+	background: #fff;
 }
 
 #content {
-	margin: 30px 13em 0 3em;
-	padding-right: 60px;
-}
-
-#author {
-	margin: 0 1em 0 0;
+	margin: 0 25em 0 0;
+	min-width: 600px
 }
 
 #header {
@@ -219,21 +83,6 @@ hr {
 	text-indent: -9000px;
 }
 
-.credit {
-	background: #a40000 url("forum/Themes/revo/images/headbg_bg.png") repeat-x center;
-	color: #fff;
-	font-size: 11px;
-	margin: 10px 0 0 0;
-	padding: 3px;
-	text-align: center;
-	border: solid #fff 1px;
-	border-top: solid #ccc 3px;
-}
-
-.credit a {
-	color: #fff;
-}
-
 #tag {
 	width: 165px;
 	height: 20px;
@@ -244,129 +93,109 @@ hr {
 	margin: -30px 0 0 165px;
 }
 
-#feed, #forum {
-	text-align: center;
-	width: 55px;
-	height: 65px;
-	display: block;
-	line-height: 100px;
-	position: absolute;
+#paging {
+	text-align: right;
 }
 
-#btnz {
-	margin: 0 0 4.2em 0;
+#menu {
+	position: absolute;
+	right: 55px;
+	top: 200px;
+	width: 20em;
+	background: #fff;
+	padding: 1em;
+}
+
+#buttons {
+	margin: 0 0 5em 0;
+}
+
+#buttons a {
+	display: block;
+	float: left;
+	height: 60px;
+	width: 70px;
+	overflow: hidden;
+	text-align: center;
+	line-height: 100px;
 }
 
 #forum {
 	background: transparent url("img/forum.png") no-repeat center top;
-	margin: 0 0 0 .6em;
 }
 
 #feed {
 	background: transparent url("img/feed.png") no-repeat center top;
-	margin: 0 0 0 4.4em;
 }
 
-#menu {
-	background: #fff;
-	border-left: 1px dotted #ccc;
-	border-top: solid 5px #FFCE5D;
-	padding: 20px 0 10px 30px;
-	position: absolute;
-	right: 40px;
-	top: 90px;
-	width: 11em;
+#downloads {
+	background: transparent url("img/downloads.png") no-repeat center top;
 }
 
-#menu form {
-	margin: 0 0 0 13px;
+#ads {
+	text-align: center;
 }
 
-#menu input#s {
-	width: 80%;
-	background: #eee;
-	border: 1px solid #999;
-	color: #000;
+#ads a {
+	font: normal 2em Verdana, sans-serif;
 }
 
-#menu ul {
-
-	font-weight: bold;
-	list-style-type: none;
-	margin: 0;
-	padding-left: 3px;
+.post {
+	margin: 2em 1em;
 }
 
-#menu ul li {
-	font: italic 1.1em "Times New Roman", Times, serif;
-	letter-spacing: .2em;
-	margin-top: 10px;
-	padding-bottom: 2px;
+.storytitle {
+	font: normal 2em Verdana, sans-serif;
+	clear: both;
 }
 
-#menu ul ul {
-	font-variant: normal;
-	font-weight: normal;
-	line-height: 100%;
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	text-align: left;
+.meta {
+	margin: -2em 0 .5em 0;
+	font-size: .8em;
+	color: #999;
 }
 
-#menu ul ul li {
-	border: 0;
-	font: normal normal .7em/1.2em Verdana, sans-serif;
-	letter-spacing: 0;
-	margin-top: 0;
-	padding: 0;
-	padding-left: 12px;
-}
-
-#menu ul a {
-	color: #000;
-	text-decoration: none;
-}
-
-#menu ul ul li a:hover {
-	border-bottom: 1px solid #809080;
-}
-
-#menu ul ul ul.children {
-	font-size: 142%;
-	padding-left: 4px;
-}
-
-#catg {
-	background: #ccc;
-}
-
-table {
-	font: normal .8em Verdana;
-	border-collapse: collapse;
-	text-align: left;
-}
-th, td {
-	width: 8em;
-	height: 2em;
-}
-th {
-	border-bottom: solid 1px #000;
-}
-
-.more {
-	color: #f00;
-}
-
-code {
-	font-size: 1.2em;
-}
-pre {
-	font-size: .9em;
-	border: solid 1px #ccc;
+.storycontent {
+	background: #FFFFBF url("img/tr_corner.png") top right no-repeat;
 	padding: 1em;
-	overflow: auto;
+	border-left: solid 2px #a40000;
 }
+
+.clear {
+	clear: both;
+}
+
+.storycontent a {
+	text-decoration: underline;
+}
+
+.feedback {
+	margin-top: 0;
+	text-align: right;
+	font-size: 1.4em;
+}
+
+.hidden {
+	display: none;
+}
+
+.credit {
+	background: #a40000 url("forum/Themes/revo/images/headbg_bg.png") repeat-x center;
+	color: #fff;
+	font-size: 11px;
+	margin: 10px 0 0 0;
+	padding: 3px;
+	text-align: center;
+	border: solid #fff 1px;
+	border-top: solid #ccc 1px;
+}
+
+.credit a {
+	color: #fff;
+}
+
+
+/* content style */
 
 .L, .Lb {
 	margin: .8em;
