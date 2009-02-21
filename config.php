@@ -16,4 +16,13 @@ $site_url = "http://revolushii.ro";
 $forum_url = "http://revolushii.ro/forum";
 $forum_path = ""; // location on server
 $items_per_page = 10; // items per page, when paging
+
+// caching settings
+//
+// cache file prefix- must be in a webserver-writable directory
+
+$cache_file = "cache/rnews.page";
+
+// maximum cache age, in minutes
+$cache_max_age = "20";
 ?>

@@ -19,6 +19,30 @@ if (!is_numeric($page) || $page < 0 || $page > 999)
 }
 $items_start = ($page * $items_per_page);
 
+// check caching
+// send max cache age for client
+header("Cache-control: max-age=" . ($cache_max_age * 60));
+$cache_file .= $page;
+if(file_exists($cache_file))
+{
+    // file exists, check age
+    $cache_mtime = filemtime($cache_file);
+    if((time() - $cache_mtime) < ($cache_max_age * 60))
+    {
+        // cache file age less than max age, output it and die
+        header("Last-modified: " . gmdate("D, d M Y H:i:s", $cache_mtime) . " GMT");
+        include($cache_file);
+        die();
+    }
+}
+
+// no cache file or cache out of date, regenerate it then output it
+// start output buffering
+ob_start();
+
+// output Last-modified = now
+header("Last-modified: " . gmdate("D, d M Y H:i:s", time()) . " GMT");
+
 // SQL query that only grabs the first post of any thread, but counts number of
 // posts in that thread and returns that too. Sorted by time desc (newest
 // first), uninfluenced by replies.
@@ -152,9 +176,17 @@ echo '
 ';
 
 echo '</div>';
-echo '<!-- end sidebar -->';
+echo '<!-- end sidebar -->
+<!-- cache control: cache generated on: ' . date('r') . ' -->';
 
 // insert footer template
 include($template_footer);
+
+// finished rendering page, save buffer to cache file and output
+$pcontent = ob_get_contents();
+$cfhandle = fopen($cache_file, 'wb');
+fwrite($cfhandle, $pcontent);
+fclose($cfhandle);
+ob_end_flush();
 
 ?>

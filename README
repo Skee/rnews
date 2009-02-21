@@ -15,6 +15,10 @@ TinyPortal.
 Also included is a basic converter for wordpress posts to smf topics,
 and a htaccess generator for redirects from wordpress posts to smf topics.
 
+The generated output is cached in one file per page. You must configure page
+caches in a webserver writable directory. Appropriate headers are also sent
+to the browser in order to minimize traffic.
+
 Written for http://revolushii.ro by Skee ( http://token.ro/ ).
 
 Copyright (c) 2009, Skee, http://token.ro
