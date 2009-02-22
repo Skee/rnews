@@ -8,7 +8,7 @@
 
 // config
 include("config.php");
-$version = "0.5";
+$version = "0.6";
 
 // Let's do some LIMIT-based paging
 $page = $_GET['p'] + 0;
@@ -125,22 +125,22 @@ echo '<hr class="hidden" />
 <div id="menu">';
 
 echo '
-<p id="buttons">
-	<a id="forum" href="' . $forum_url . '/" title="Forum">Forum</a>
-	<a id="feed" href="' . $site_url . '/feed/" rel="alternate"
-	type="application/rss+xml" title="Feed">Feed</a>
-	<a id="downloads" href="' . $site_url . '/downloads/" title="Downloads">
-	Downloads</a>
-	<br />
-</p>
+<h2 class="hidden">Menu</h2>
+<ul id="buttons">
+	<li><a id="forum" href="' . $forum_url . '/" title="Forum">Forum</a></li>
+	<li><a id="feed" href="' . $site_url . '/feed/" rel="alternate"
+	type="application/rss+xml" title="Feed">Feed</a></li>
+	<li><a id="downloads" href="' . $site_url . '/downloads/"
+	title="Downloads">Downloads</a></li>
+</ul>
 ';
 
 echo '
 <form id="search" action="' . $forum_url . '/index.php?action=search2"
 	method="post" accept-charset="UTF-8">
 <p>
-	<input name="search" type="text" />
-	<input name="submit" value="Search" type="submit" />
+	<input name="search" type="text" id="search_text" />
+	<input name="submit" type="submit" value="Search" id="search_submit" />
 	<input name="brd[' . $board_id . ']" value="' . $board_id . '"
 	type="hidden" />
 </p>
@@ -175,6 +175,8 @@ echo '</div>';
 
 echo '
 <div id="ads">
+	<h2 class="hidden">Ads</h2>
+
 	<a href="' . $forum_url . '/index.php?action=register">Register!</a><br />
 	klovruut wants <strong>you</strong>
 </div>

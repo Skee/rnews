@@ -23,6 +23,15 @@ a img {
 	border: none;
 }
 
+h2 {
+	font-size: 1.5em;
+}
+
+ul {
+	padding: 0;
+	margin: 0;
+}
+
 cite {
 	font-style: italic;
 }
@@ -107,12 +116,17 @@ pre {
 }
 
 #buttons {
-	margin: 0 0 5em 0;
+	margin: 0 0 7em 0;
+	list-style: none;
+}
+
+#buttons li {
+	float: left;
+	margin: .3em;
 }
 
 #buttons a {
 	display: block;
-	float: left;
 	height: 60px;
 	width: 70px;
 	overflow: hidden;
@@ -130,6 +144,10 @@ pre {
 
 #downloads {
 	background: transparent url("img/downloads.png") no-repeat center top;
+}
+
+#search {
+	text-align: center;
 }
 
 #ads {
@@ -157,7 +175,7 @@ pre {
 
 .storycontent {
 	background: #FFFFBF url("img/tr_corner.png") top right no-repeat;
-	padding: 1em;
+	padding: 1.2em;
 	border-left: solid 2px #a40000;
 }
 
@@ -198,7 +216,7 @@ pre {
 /* content style */
 
 .L, .Lb {
-	margin: .8em;
+	margin: .2em .8em 0 0;
 	float: left;
 	max-width: 128px;
 	max-height: 128px;
