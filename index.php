@@ -45,7 +45,7 @@ ob_start();
 
 // output Last-modified = now
 header("Last-modified: " . gmdate("D, d M Y H:i:s", time()) . " GMT");
-header("Expires: " . gmdate("D, d M Y H:i:s", time() + ($cache_max_age * 60)) . 
+header("Expires: " . gmdate("D, d M Y H:i:s", time() + ($cache_max_age * 60)) .
     " GMT");
 
 // SQL query that only grabs the first post of any thread, but counts number of
@@ -72,6 +72,8 @@ $num_returned = mysql_num_rows($raw);
 
 // insert header template
 include($template_header);
+
+echo('<div id="content">');
 
 // parse database content, item by item
 while($item = mysql_fetch_assoc($raw))
@@ -124,6 +126,7 @@ if ($num_returned == $items_per_page)
 	</p>';
 }
 
+echo('</div>');
 
 echo '<!-- begin sidebar -->';
 echo '<hr class="hidden" />

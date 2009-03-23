@@ -1,5 +1,4 @@
 <!-- begin footer -->
-</div>
 <p class="credit">
 	Coded by <a rel="author" title="token.ro"
 	href="http://token.ro/"><strong>token.ro</strong></a>
