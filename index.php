@@ -8,7 +8,7 @@
 
 // config
 include("config.php");
-$version = "0.6";
+$version = "0.7";
 
 // Let's do some LIMIT-based paging
 $page = $_GET['p'] + 0;
@@ -79,7 +79,7 @@ echo('<div id="content">');
 while($item = mysql_fetch_assoc($raw))
 {
     // get first attachment (second attachment is thumbnail)
-    $attach_query = "select id_attach, filename from smf_attachments where
+    $attach_query = "select id_attach, filename, file_hash from smf_attachments where
         id_msg = " . $item['ID_MSG'] . " limit 1";
     $att_res = mysql_query($attach_query) or die(mysql_error());
     $attach_id = 0;
@@ -88,7 +88,15 @@ while($item = mysql_fetch_assoc($raw))
         $attach_arr = mysql_fetch_row($att_res);
         $attach_id = $attach_arr[0];
         $attach_fn = $attach_arr[1];
-        $attach_realfn = getAttachmentFilename($attach_fn, $attach_id, true);
+        $attach_hash = $attach_arr[2];
+
+        // smf 1.1.9 hack
+        // attachments up to 1181 are old system
+        // anything higher = new system
+        if($attach_hash == "")
+            $attach_realfn = getLegacyAttachmentFilename($attach_fn, $attach_id, true);
+        else
+            $attach_realfn = $attach_id . "_" . $attach_hash;
     }
     // do html magic hyah
     echo '<div class="post">';
