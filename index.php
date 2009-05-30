@@ -103,13 +103,15 @@ while($item = mysql_fetch_assoc($raw))
 	// do html magic hyah
 	echo '<div class="post" id="post-'.$item['ID_TOPIC'].'">';
 	echo '<h2 class="storytitle">
-		<a href="#post-'.$item['ID_TOPIC'].'">'.
-		$item['subject'] . '</a>
+		<a rel="bookmark" href="' . $forum_url . '/index.php/topic,' .
+		$item['ID_TOPIC'] . '.0.html">' . $item['subject'] . '</a>
 		</h2>';
 	echo '<p class="meta">Posted by <em> <a href="' . $forum_url .
 		'/index.php?action=profile;u=' . $item['ID_MEMBER'] . '">' .
 		$item['posterName'] . '</a></em> @ ' . date('H:i, D, d M Y',
-		$item['posterTime']) . "</p>\n";
+		$item['posterTime']) .
+		', <a class="post_id" href="#post-'.$item['ID_TOPIC'].'">Link here</a>'.
+		 "</p>\n";
 	echo '<div class="storycontent">';
 	// if any attachment was found, display it left-aligned
 //	if($attach_id) echo '<img src="' . $forum_url .
