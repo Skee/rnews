@@ -99,10 +99,10 @@ while($item = mysql_fetch_assoc($raw))
             $attach_realfn = $attach_id . "_" . $attach_hash;
     }
     // do html magic hyah
-    echo '<div class="post">';
+    echo '<div class="post" id="post-'.$item['ID_TOPIC'].'">';
     echo '<h2 class="storytitle">
-        <a rel="bookmark" href="' . $forum_url . '/index.php/topic,' .
-        $item['ID_TOPIC'] . '.0.html">' . $item['subject'] . '</a>
+        <a href="#post-'.$item['ID_TOPIC'].'">'.
+		$item['subject'] . '</a>
         </h2>';
     echo '<p class="meta">Posted by <em> <a href="' . $forum_url .
         '/index.php?action=profile;u=' . $item['ID_MEMBER'] . '">' .
