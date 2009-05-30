@@ -31,7 +31,14 @@ cite {
 	font-style: italic;
 }
 
-blockquote {
+.quoteheader {
+	font-style: italic;
+	font-weight: bold;
+	padding: .5em;
+	color: #a40000;
+}
+
+blockquote, .quote {
 	background: transparent url("img/quote.png") top right no-repeat;
 	font-style: italic;
 	padding: .5em;
