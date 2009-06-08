@@ -117,8 +117,8 @@ while($item = mysql_fetch_assoc($raw))
 //	if($attach_id) echo '<img src="' . $forum_url .
 //		'/index.php?action=dlattach;topic=' . $item['ID_TOPIC'] . '.0;attach='
 //		. $attach_id . ';image" alt="' . $attach_realfn  . '" class="L" /> ';
-	if($attach_id) echo '<img src="' . $forum_url . '/attachments/' .
-		$attach_realfn . '" alt="' . $attach_fn  . '" class="L" /> ';
+    if($attach_id) echo '<img src="/image/' . $attach_realfn . '/' . $attach_fn . 
+        '" alt="' . $attach_fn  . '" class="L" /> ';
 	echo parse_bbc($item['body']) . '<br />';
 	echo '<div class="clear"></div>';
 	echo "</div>\n";
