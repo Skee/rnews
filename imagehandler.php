@@ -50,7 +50,7 @@ else
 
 // display image
 header("Content-Type: " . $ctype);
-header("Content-Length:" . @filesize($ofile));
+header("Content-Length: " . filesize("forum/attachments/" . $clean_rfn));
 fpassthru($ofile);
 fclose($ofile);
 ?>
