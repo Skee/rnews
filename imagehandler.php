@@ -51,6 +51,8 @@ else
 // display image
 header("Content-Type: " . $ctype);
 header("Content-Length: " . filesize("forum/attachments/" . $clean_rfn));
+// set far-future cache expire date - these images never change
+header("Expires: Fri, 01 Jan 2021 10:00:00 GMT");
 fpassthru($ofile);
 fclose($ofile);
 ?>

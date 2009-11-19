@@ -9,3 +9,6 @@ RewriteRule ^page\/(.*) index.php?p=$1 [L]
 RewriteRule ^feed /forum/index.php?type=rss;action=.xml;sa=news;board=39.0 [L]
 RewriteRule ^image\/(.*)\/(.*) /imagehandler.php?rfn=$1&ofn=$2 [L]
 </IfModule>
+
+# enable PHP dynamic/transparent gzip compression
+php_flag zlib.output_compression on
