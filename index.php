@@ -10,10 +10,14 @@
 
 // config
 include("config.php");
-$version = "0.7";
+$version = "0.8";
 
 // Let's do some LIMIT-based paging
 $page = $_GET['p'] + 0;
+
+// permalink?
+$perma = $_GET['perma'] + 0;
+
 if (!is_numeric($page) || $page < 0 || $page > 999)
 {
 	header("Location: /");
@@ -24,7 +28,8 @@ $items_start = ($page * $items_per_page);
 // check caching
 // send cache control for client
 header("Cache-control: must-revalidate");
-$cache_file .= $page;
+if($perma) $cache_file .= 'perma' . $perma;
+else $cache_file .= 'page' . $page;
 if(file_exists($cache_file))
 {
 	// file exists, check age
@@ -53,9 +58,12 @@ header("Expires: " . gmdate("D, d M Y H:i:s", time() + ($cache_max_age * 60)) .
 // SQL query that only grabs the first post of any thread, but counts number of
 // posts in that thread and returns that too. Sorted by time desc (newest
 // first), uninfluenced by replies.
-$n_query = "select *,count(id_msg)-1 AS num_comments from smf_messages where
-	id_board = $board_id group by id_topic order by -posterTime limit
-	$items_start, $items_per_page";
+if(!$perma)
+    $n_query = "select *,count(id_msg)-1 AS num_comments from smf_messages
+        where id_board = $board_id group by id_topic order by -posterTime
+        limit $items_start, $items_per_page";
+else $n_query = "select *,count(id_msg)-1 AS num_comments from smf_messages
+        where id_board = $board_id and id_topic = $perma group by id_topic";
 
 // For Subs.php bbc parsing:
 define("SMF", "muffins");
@@ -76,10 +84,12 @@ $num_returned = mysql_num_rows($raw);
 include($template_header);
 
 echo('<div id="content">');
-
 // parse database content, item by item
 while($item = mysql_fetch_assoc($raw))
 {
+    // cleanup title for seo friendliness
+    $clean_title = preg_replace("/[^A-Za-z0-9]/", "_", substr(strtolower($item['subject']),0,50));
+    $clean_title = preg_replace("/([_]{2,})/", "_", $clean_title);
 	// get first attachment (second attachment is thumbnail)
 	$attach_query = "select id_attach, filename, file_hash from smf_attachments where
 		id_msg = " . $item['ID_MSG'] . " limit 1";
@@ -110,7 +120,8 @@ while($item = mysql_fetch_assoc($raw))
 		'/index.php?action=profile;u=' . $item['ID_MEMBER'] . '">' .
 		$item['posterName'] . '</a></em> @ ' . date('H:i, D, d M Y',
 		$item['posterTime']) .
-		', <a class="post_id" href="#post-'.$item['ID_TOPIC'].'">Link here</a>'.
+		', <a class="post_id" href="/perma/'.$item['ID_TOPIC'].'/'.$clean_title.
+        '">permalink</a>'.
 		 "</p>\n";
 	echo '<div class="storycontent">';
 	// if any attachment was found, display it left-aligned
@@ -131,7 +142,7 @@ while($item = mysql_fetch_assoc($raw))
 
 // paging
 // addition: if num_returned_results < items_per page => last page
-if ($num_returned == $items_per_page)
+if (($num_returned == $items_per_page) && !$perma)
 {
 	echo '<p id="paging">
 		<a href="/page/' . ($page+1) . '/">Next Page &raquo;</a>

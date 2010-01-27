@@ -21,7 +21,7 @@ $items_per_page = 10; // items per page, when paging
 //
 // cache file prefix- must be in a webserver-writable directory
 
-$cache_file = "cache/rnews.page";
+$cache_file = "cache/rnews.";
 
 // maximum cache age, in minutes
 $cache_max_age = "20";
