@@ -10,6 +10,18 @@
 	<link rel="alternate" type="application/rss+xml" title="revolushii.ro feed"
 	href="<?php echo $site_url; ?>/feed/" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/style.css" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	function SwitchToVideos() {
+    	$.ajax({
+        	type: "GET",
+        	url: "/watching.php",
+        	success: function(vids) {
+            	$("#content").html(vids);
+        	}
+    	});
+	}
+	</script>
 	<?php include ('xmas/index.php'); ?>
 </head>
 

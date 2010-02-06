@@ -125,9 +125,6 @@ while($item = mysql_fetch_assoc($raw))
 		 "</p>\n";
 	echo '<div class="storycontent">';
 	// if any attachment was found, display it left-aligned
-//	if($attach_id) echo '<img src="' . $forum_url .
-//		'/index.php?action=dlattach;topic=' . $item['ID_TOPIC'] . '.0;attach='
-//		. $attach_id . ';image" alt="' . $attach_realfn  . '" class="L" /> ';
     if($attach_id) echo '<img src="/image/' . $attach_realfn . '/' . $attach_fn .
         '" alt="' . $item['subject'] . '" class="L" /> ';
 	echo parse_bbc($item['body']) . '<br />';
@@ -211,6 +208,10 @@ echo '
 	<a href="' . $forum_url . '/index.php?action=register">Register!</a><br />
 	klovruut wants <strong>you</strong>
 </div>
+<h2 style="text-align:center">
+    <a href="#" onclick="SwitchToVideos();"
+    title="Possibly NSFW">Switch to videos</a>
+</h2>
 ';
 
 echo '</div>';

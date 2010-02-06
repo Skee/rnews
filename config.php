@@ -17,6 +17,9 @@ $forum_url = "http://revolushii.ro/forum";
 $forum_path = ""; // location on server
 $items_per_page = 10; // items per page, when paging
 
+// videos
+$vids_thread_id = 169;
+
 // caching settings
 //
 // cache file prefix- must be in a webserver-writable directory
