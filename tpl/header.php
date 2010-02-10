@@ -5,6 +5,8 @@
 	<title>revolushii.ro | the newsblog libre</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="RNews <?php echo $version; ?>" />
+	<link rel="search" type="application/opensearchdescription+xml"
+		href="<?php echo $site_url ?>/search.xml" title="revolushii" />
 	<link rel="shortcut icon" type="image/vnd.microsoft.icon"
 		href="/favicon.ico" />
 	<link rel="alternate" type="application/rss+xml" title="revolushii.ro feed"
