@@ -8,10 +8,11 @@
 	<link rel="search" type="application/opensearchdescription+xml"
 		href="<?php echo $site_url ?>/search.xml" title="revolushii" />
 	<link rel="shortcut icon" type="image/vnd.microsoft.icon"
-		href="/favicon.ico" />
+		href="<?php echo $site_url ?>/favicon.ico" />
 	<link rel="alternate" type="application/rss+xml" title="revolushii.ro feed"
-	href="<?php echo $site_url; ?>/feed/" />
-	<link rel="stylesheet" type="text/css" media="screen" href="/style.css" />
+		href="<?php echo $site_url; ?>/feed/" />
+	<link rel="stylesheet" type="text/css" media="screen"
+		href="<?php echo $site_url ?>/style.css" />
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
 	<script type="text/javascript">
 	function SwitchToVideos() {
